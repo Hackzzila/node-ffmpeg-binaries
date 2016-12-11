@@ -4,7 +4,7 @@ Supports Windows and Linux
 
 ## Versioning
 The major, minor, and patch versions correspond to the version of ffmpeg this package supports.
-The metadata corresponds to the version of the package itself.
+The pre-release version corresponds to the version of the package itself.
 
 ## Install
 ### Install Globally:
