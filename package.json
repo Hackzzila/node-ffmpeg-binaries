@@ -2,11 +2,17 @@
   "name": "ffmpeg-binaries",
   "version": "3.2.2",
   "description": "ffmpeg binaries",
-  "scripts": {},
+  "os": ["win32", "linux"],
+  "scripts": {
+    "install": "node install"
+  },
   "keywords": [
     "ffmpeg",
     "binaries"
   ],
+  "dependencies": {
+    "tar.gz": "^1.0.5"
+  },
   "author": "Hackzzila <admin@hackzzila.com>",
   "license": "MIT",
   "repository": {
