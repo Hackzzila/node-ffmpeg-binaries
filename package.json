@@ -1,0 +1,20 @@
+{
+  "name": "ffmpeg-binaries",
+  "version": "3.2.2",
+  "description": "ffmpeg binaries",
+  "scripts": {},
+  "keywords": [
+    "ffmpeg",
+    "binaries"
+  ],
+  "author": "Hackzzila <admin@hackzzila.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hackzzila/node-ffmpeg-binaries.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Hackzzila/node-ffmpeg-binaries/issues"
+  },
+  "homepage": "https://github.com/Hackzzila/node-ffmpeg-binaries#readme"
+}
