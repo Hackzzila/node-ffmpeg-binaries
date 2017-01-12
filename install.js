@@ -9,6 +9,8 @@ if (process.platform === 'win32') {
   request = superagent.get('https://github.com/Hackzzila/node-ffmpeg-binaries/blob/master/windows.tar.gz?raw=true');
 } else if (process.platform === 'linux') {
   request = superagent.get('https://github.com/Hackzzila/node-ffmpeg-binaries/blob/master/linux.tar.gz?raw=true');
+} else if (process.platform === 'darwin') {
+  request = superagent.get('https://github.com/Hackzzila/node-ffmpeg-binaries/blob/master/darwin.tar.gz?raw=true');
 }
 
 console.log('Downloading')
