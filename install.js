@@ -1,26 +1,22 @@
 'use strict';
 
-const fs = require('fs');
-const targz = require('tar.gz');
-const superagent = require('superagent');
+const zlib = require('zlib');
+const tar = require('tar');
+const path = require('path');
+const http = require('https');
 
-let request;
-if (process.platform === 'win32') {
-  request = superagent.get('https://github.com/Hackzzila/node-ffmpeg-binaries/blob/master/windows.tar.gz?raw=true');
-} else if (process.platform === 'linux') {
-  request = superagent.get('https://github.com/Hackzzila/node-ffmpeg-binaries/blob/master/linux.tar.gz?raw=true');
-} else if (process.platform === 'darwin') {
-  request = superagent.get('https://github.com/Hackzzila/node-ffmpeg-binaries/blob/master/darwin.tar.gz?raw=true');
+function callback(res) {
+  res
+    .pipe(zlib.createGunzip())
+    .pipe(tar.Extract({ path: path.join(__dirname, 'bin') }));
 }
 
-console.log('Downloading')
-request.pipe(fs.createWriteStream('./bin.tar.gz'));
-
-request.on('end', () => {
-  console.log('Extracting');
-  targz().extract('./bin.tar.gz', 'bin')
-    .then(() => console.log('Done!'))
-    .catch((err) => {
-      throw err;
-    });
-});
+if (process.platform === 'win32') {
+  http.get('https://raw.githubusercontent.com/Hackzzila/node-ffmpeg-binaries/master/windows.tar.gz', callback);
+} else if (process.platform === 'linux') {
+  http.get('https://raw.githubusercontent.com/Hackzzila/node-ffmpeg-binaries/master/linux.tar.gz', callback);
+} else if (process.platform === 'darwin') {
+  http.get('https://raw.githubusercontent.com/Hackzzila/node-ffmpeg-binaries/master/darwin.tar.gz', callback);
+} else {
+  throw new Error('unsupported platform');
+}
