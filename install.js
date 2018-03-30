@@ -32,7 +32,7 @@ if (process.platform === 'win32') {
     case 'ia32':
       http.get('https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-32bit-static.tar.xz', callback);
       break;
-      case 'arm':
+    case 'arm':
       http.get('https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-arm64-64bit-static.tar.xz', callback);
       break;
     default:
