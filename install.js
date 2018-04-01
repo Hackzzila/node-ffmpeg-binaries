@@ -8,15 +8,44 @@ const http = require('https');
 function callback(res) {
   res
     .pipe(zlib.createGunzip())
-    .pipe(tar.Extract({ path: path.join(__dirname, 'bin') }));
+    .pipe(tar.Extract({
+      path: path.join(__dirname, 'bin')
+    }));
 }
 
 if (process.platform === 'win32') {
-  http.get('https://raw.githubusercontent.com/Hackzzila/node-ffmpeg-binaries/master/windows.tar.gz', callback);
+  switch (process.arch) {
+    case 'x64':
+      http.get('https://ffmpeg.zeranoe.com/builds/win64/static/ffmpeg-latest-win64-static.zip', callback);
+      break;
+    case 'ia32':
+      http.get('https://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.zip', callback);
+      break;
+    default:
+      throw new Error('unsupported platform');
+  }
 } else if (process.platform === 'linux') {
-  http.get('https://raw.githubusercontent.com/Hackzzila/node-ffmpeg-binaries/master/linux.tar.gz', callback);
+  switch (process.arch) {
+    case 'x64':
+      http.get('https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-static.tar.xz', callback);
+      break;
+    case 'ia32':
+      http.get('https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-32bit-static.tar.xz', callback);
+      break;
+    case 'arm':
+      http.get('https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-arm64-64bit-static.tar.xz', callback);
+      break;
+    default:
+      throw new Error('unsupported platform');
+  }
 } else if (process.platform === 'darwin') {
-  http.get('https://raw.githubusercontent.com/Hackzzila/node-ffmpeg-binaries/master/darwin.tar.gz', callback);
+  switch (process.arch) {
+    case 'x64':
+      http.get('https://ffmpeg.zeranoe.com/builds/macos64/static/ffmpeg-latest-macos64-static.zip', callback);
+      break;
+    default:
+      throw new Error('unsupported platform');
+  }
 } else {
   throw new Error('unsupported platform');
 }
