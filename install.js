@@ -6,14 +6,16 @@ const unzip = require('decompress-unzip');
 
 function callback(plugin) {
   return (res) => {
-    let buf = Buffer.alloc(0);
-
     let last;
     let complete = 0;
-    const total = res.headers['content-length'];
+    const total = parseInt(res.headers['content-length'], 10);
+
+    let index = 0;
+    const buf = Buffer.alloc(total);
 
     res.on('data', (chunk) => {
-      buf = Buffer.concat([buf, chunk]);
+      chunk.copy(buf, index);
+      index += chunk.length;
 
       complete += chunk.length;
       const progress = Math.round((complete / total) * 20);
@@ -29,7 +31,7 @@ function callback(plugin) {
 
     res.on('end', () => {
       readline.cursorTo(process.stdout, 0, null);
-      process.stdout.write(`Downloading binary: [${'='.repeat(20)}] 100%`);
+      console.log(`Downloading binary: [${'='.repeat(20)}] 100%`);
 
       decompress(buf, 'bin', {
         plugins: [plugin()],
