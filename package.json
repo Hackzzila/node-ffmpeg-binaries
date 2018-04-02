@@ -7,6 +7,9 @@
     "test": "eslint *.js",
     "install": "node install"
   },
+  "bin": {
+    "ffmpeg": "bin/ffmpeg"
+  },
   "os": [
     "win32",
     "linux",
