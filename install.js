@@ -20,7 +20,7 @@ function callback(res) {
     const progress = Math.round((complete / total) * 20);
 
     if (progress !== last) {
-      readline.cursorTo(process.stdout, 0, null);
+      cursorTo(process.stdout, 0, null);
 
       process.stdout.write(`Downloading binary: [${'='.repeat(progress)}${[' '.repeat(20 - progress)]}] ${Math.round((complete / total) * 100)}%`);
 
@@ -29,7 +29,7 @@ function callback(res) {
   });
 
   res.on('end', () => {
-    readline.cursorTo(process.stdout, 0, null);
+    cursorTo(process.stdout, 0, null);
     console.log(`Downloading binary: [${'='.repeat(20)}] 100%`);
 
     decompress(buf, 'bin', {
