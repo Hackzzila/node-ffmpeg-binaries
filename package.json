@@ -1,25 +1,27 @@
 {
   "name": "ffmpeg-binaries",
-  "version": "3.2.2-4",
+  "version": "4.0.0",
   "description": "ffmpeg binaries",
+  "scripts": {
+    "test": "eslint *.js",
+    "install": "node install"
+  },
+  "bin": {
+    "ffmpeg": "bin/ffmpeg"
+  },
   "os": [
     "win32",
     "linux",
     "darwin"
   ],
-  "scripts": {
-    "install": "node install"
-  },
-  "bin": {
-    "ffmpeg": "bin/ffmpeg",
-    "ffprobe": "bin/ffprobe"
-  },
   "keywords": [
     "ffmpeg",
     "binaries"
   ],
   "dependencies": {
-    "tar": "^2.2.1"
+    "decompress": "^4.2.0",
+    "decompress-tarxz": "^2.1.1",
+    "decompress-unzip": "^4.0.1"
   },
   "author": "Hackzzila <admin@hackzzila.com>",
   "license": "MIT",
@@ -32,5 +34,9 @@
   },
   "homepage": "https://github.com/Hackzzila/node-ffmpeg-binaries#readme",
   "main": "index.js",
-  "devDependencies": {}
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.10.0"
+  }
 }
