@@ -2,6 +2,7 @@
   "name": "ffmpeg-binaries",
   "version": "4.0.0",
   "description": "ffmpeg binaries",
+  "main": "index.js",
   "scripts": {
     "test": "eslint *.js",
     "install": "node install"
@@ -23,8 +24,11 @@
     "decompress-tarxz": "^2.1.1",
     "decompress-unzip": "^4.0.1"
   },
-  "author": "Hackzzila <admin@hackzzila.com>",
-  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.10.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Hackzzila/node-ffmpeg-binaries.git"
@@ -33,10 +37,8 @@
     "url": "https://github.com/Hackzzila/node-ffmpeg-binaries/issues"
   },
   "homepage": "https://github.com/Hackzzila/node-ffmpeg-binaries#readme",
-  "main": "index.js",
-  "devDependencies": {
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.10.0"
+  "license": "MIT",
+  "eslintConfig": {
+    "extends": "airbnb-base"
   }
 }
