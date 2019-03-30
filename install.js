@@ -54,16 +54,16 @@ if (process.platform === 'win32') {
 } else if (process.platform === 'linux') {
   switch (process.arch) {
     case 'x64':
-      get('https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-static.tar.xz', callback);
+      get('https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz', callback);
       break;
     case 'ia32':
-      get('https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-32bit-static.tar.xz', callback);
+      get('https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-i686-static.tar.xz', callback);
       break;
     case 'arm':
-      get('https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-armhf-32bit-static.tar.xz', callback);
+      get('https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-armhf-static.tar.xz', callback);
       break;
     case 'arm64':
-      get('https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-arm64-64bit-static.tar.xz', callback);
+      get('https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-arm64-static.tar.xz', callback);
       break;
     default:
       throw new Error('unsupported platform');
